@@ -1,0 +1,31 @@
+<div>
+  <div class="row">
+    <div class="col-10">
+      <h4>CS Chat Bot</h4>
+    </div>
+    <div class="col-2">
+      <button (click)="closeDialog()" mat-mini-fab color="warn"> <mat-icon>close</mat-icon></button>
+    </div>
+  </div>
+</div>
+<div class="messages">
+<ng-container *ngFor="let message of messages">
+<div class="message"
+[ngClass]="{ 'from': message.author === 'bot',
+'to': message.author === 'user' }">
+{{ message.content }}
+</div>
+</ng-container>
+</div>
+<form [formGroup]="chatform" (ngSubmit)="sendMessage()">
+  <div class="row">
+    <div class="col-9">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Your message"   formControlName="value" required>
+      </mat-form-field>
+    </div>
+    <div class="col-2">
+      <button type="submit" mat-raised-button class="btn-lg" color="warn">Send</button>
+    </div>
+  </div>
+</form>

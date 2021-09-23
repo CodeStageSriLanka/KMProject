@@ -1,0 +1,51 @@
+<div>
+  <h2 mat-dialog-title class="mb-5">Upload File</h2>
+  <div>
+      <form [formGroup]="uplaodform" (ngSubmit)="onSubmitClick()" >
+          <div class="text-inside">
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Title"  formControlName="title" required>
+                  <mat-error *ngIf="uplaodform.controls.title.hasError('required')">
+                      Please enter title
+                  </mat-error>
+                  <mat-error *ngIf="uplaodform.controls.title.hasError('pattern')">
+                      Please enter valid title
+                  </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="text-inside">
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Author"  formControlName="author" required>
+                  <mat-error *ngIf="uplaodform.controls.author.hasError('required')">
+                      Please enter author name
+                  </mat-error>
+                  <mat-error *ngIf="uplaodform.controls.author.hasError('pattern')">
+                      Please enter valid author name
+                  </mat-error>
+              </mat-form-field>
+          </div>
+
+          <div class="text-inside mt-2 mb-2">
+                <input type="file" (change)="selectFile($event)" placeholder="Author" required>
+          </div>
+
+          <ngx-dropzone hidden (change)="onSelect($event)" class="mt-3">
+            <ngx-dropzone-label>Drop it!</ngx-dropzone-label>
+            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-preview>
+          </ngx-dropzone>
+
+          <div class="btn-sec mt-3">
+              <button class="mr-3"  [disabled]="uplaodform.invalid"  mat-raised-button color="warn"><mat-icon>cloud_upload</mat-icon> Upload</button>
+              <button type="button" mat-button (click)="closeDialog()">Cancel</button>
+          </div>
+      </form>
+
+      <div class="body mt-3" *ngIf="progressNum | async as percentage">
+        Progress: {{ percentage | number }}%
+        <mat-progress-bar mode="determinate" value="{{percentage}}"></mat-progress-bar>
+      </div>
+  </div>
+</div>
+

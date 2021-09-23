@@ -1,0 +1,61 @@
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="row p-3">
+            <div class="col-10">
+              <h2> {{"SIDEBAR.DA" | translate}}</h2>
+            </div>
+            <div class="col-2 text-right">
+              <button mat-raised-button (click)="openUplaod()" *ngIf="access().UserType=='dd'"  class="btn-lg" color="warn"><mat-icon>cloud_upload</mat-icon> Upload</button>
+            </div>
+          </div>
+        </div>
+        <div (change)="updateResults()" (keyup)="updateResults()">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput [(ngModel)]="searchValue">
+          </mat-form-field>
+        </div>
+        <div class="card">
+          <div class="body">
+            <div class="row">
+              <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12" *ngFor="let file of filteredItems">
+                <div class="box-part text-center card">
+                  <i class="{{filetype(file.type)}}"></i>
+                  <div class="title p-t-15">
+                    <h3>{{file.title}}</h3>
+                  </div>
+                  <div class="text p-b-10">
+                    <span>by {{file.author}}</span>
+                  </div>
+                  <a>{{convetdate(file.Date)}}</a>
+                  <div class="mt-3">
+                    <div class="row  text-center m0">
+                      <div class="col-3  text-center p0" >
+                        <a class="btn btn-danger" mat-button (click)="viewdoc(file.filepath)"><mat-icon>remove_red_eye</mat-icon></a>
+                      </div>
+                      <div class="col-3  text-center p0" >
+                        <a class="btn btn-danger" *ngIf="file.Uid == access().Uid" mat-button href="{{file.filepath}}"><mat-icon>file_download</mat-icon></a>
+                      </div>
+                      <div class="col-3  text-center p0" >
+                        <a class="btn btn-danger" (click)="deleteconfirm(file.id)"  *ngIf="file.Uid == access().Uid" mat-button><mat-icon>delete</mat-icon></a>
+                      </div>
+                      <div class="col-3  text-center p0" >
+                        <a class="btn btn-danger" (click)="openshare(file)"  *ngIf="file.Uid == access().Uid" mat-button><mat-icon>share</mat-icon></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

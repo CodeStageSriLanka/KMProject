@@ -1,0 +1,7 @@
+.chatbutton{
+  position: fixed !important;
+  right: 15px !important;
+  bottom: 15px !important;
+  z-index: 999 !important;
+
+}

@@ -1,0 +1,18 @@
+
+<section>
+  <div class="text-center">
+      <div class="mt-4"><h1>Downlaod Page</h1></div>
+      <div class="mt-5 text-center">
+        <i class="{{filetype(this.docdata.type)}}"></i>
+        <div class="title p-t-15">
+          <h3>{{this.docdata.FileName}}</h3>
+        </div>
+        <a>{{convetdate(this.docdata.Date)}}</a>
+      </div>
+      <div *ngIf="!showdownbutton" ><input type="text" [(ngModel)]="password" class="mt-4" placeholder="Enter Password"></div>
+
+        <button *ngIf="!showdownbutton" class="btn btn-success mt-4" (click)="checkpassword()"  mat-button>Done</button>
+
+      <div *ngIf="showdownbutton" class="mt-4" ><a mat-raised-button href="{{this.docdata.filepath}}"  class="btn-lg" color="warn">Downlaod</a></div>
+  </div>
+</section>

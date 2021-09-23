@@ -1,0 +1,12 @@
+<div class="text-center mb-3">
+{{chat.Uname}}'s Results With Chat Bot
+</div>
+<div class="messages">
+  <ng-container *ngFor="let message of chat.chat">
+  <div class="message"
+  [ngClass]="{ 'from': message.author === 'bot',
+  'to': message.author === 'user' }">
+  {{ message.content }}
+  </div>
+  </ng-container>
+  </div>
